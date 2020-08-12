@@ -25,7 +25,11 @@ source pytorch/bin/activate
 python ./filename.py
 
 
-###############################################################################################################
+##############################################################################################################
+If installing on home computer, you might want to get an IDE or something. I normally work through Spyder (which comes with Anaconda installation) for Python.
+	- Anaconda is definitely great to have
+
+##############################################################################################################
 
 Graphics card drivers and compatability (may be tricky with windows)
 # CUDA Toolkit ==> needs VIsual studio (base package sufficient???)
