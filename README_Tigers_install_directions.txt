@@ -48,3 +48,20 @@ pip install pyqt5==5.12.0
 then retry
 
 
+
+(4) Location of training data on lab computer:
+	- main data from old paper for training (already pre-processed to now work with training):
+		D:\Tiger\Tiger\AI stuff\z_myelin_data_FULL_with_NANOFIBERS_TRAINING
+
+	- raw data of the above and all raw ROIs generated from manually tracing by Tiger, Daryan, Matthew, and Qiao Ling:
+		J:\DATA_2017-2018\Tiger_old_data\Daryan Images and ROIs
+
+
+	- QL data for training on HUMAN OLs
+		D:\Tiger\Tiger\AI stuff\z_myelin_data_1024x1024-QL-human-images
+
+
+D:\Tiger\Tiger\MATLAB source\3) Super-resolution ==> for Tiger, ignore this file
+
+
+
