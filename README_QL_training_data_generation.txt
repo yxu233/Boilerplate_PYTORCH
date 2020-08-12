@@ -11,7 +11,6 @@ Tracing:
 	- repeat until all are traced
 (5) Then go to the ImageJ macro you opened before and click "run" (bottom left corner), that will save the current cell you traced in the folder you indicated in the macro
 	- repeat all of these tracing steps for all the cells in the image you want to segment
-	***you don't have to do every cell
 	***check to make sure it saved properly!!! Each new ROI file should have a unique numerical identifier __001, 002 ect... so make sure you're not overwriting files. If so, let me know.
 
 
