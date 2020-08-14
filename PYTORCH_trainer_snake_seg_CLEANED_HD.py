@@ -22,7 +22,6 @@ import numpy as np
 import glob, os
 import datetime
 import time
-import bcolz
 from sklearn.model_selection import train_test_split
 
 from natsort import natsort_keygen, ns
@@ -159,8 +158,8 @@ if __name__ == '__main__':
 
                 
     """ Create datasets for dataloader """
-    training_set = Dataset_tiffs_snake_seg(tracker.idx_train, examples, mean_arr, std_arr, sp_weight_bool=sp_weight_bool, transforms = transforms)
-    val_set = Dataset_tiffs_snake_seg(tracker.idx_valid, examples, mean_arr, std_arr, sp_weight_bool=sp_weight_bool, transforms = 0)
+    training_set = Dataset_tiffs_snake_seg(tracker.idx_train, examples, mean_arr, std_arr, sp_weight_bool=tracker.sp_weight_bool, transforms = transforms)
+    val_set = Dataset_tiffs_snake_seg(tracker.idx_valid, examples, mean_arr, std_arr, sp_weight_bool=tracker.sp_weight_bool, transforms = 0)
     
     """ Create training and validation generators"""
     val_generator = data.DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=num_workers,
