@@ -123,7 +123,7 @@ if __name__ == '__main__':
         idx_train, idx_valid, empty, empty = train_test_split(counter, counter, test_size=test_size, random_state=2018)
         
         """ initialize training_tracker """
-        tracker = tracker(mean_arr, std_arr, batch_size, test_size, idx_train, idx_valid, deep_sup=deep_sup, switch_norm=switch_norm, alpha=alpha, HD=HD,
+        tracker = tracker(batch_size, test_size, mean_arr, std_arr, idx_train, idx_valid, deep_sup=deep_sup, switch_norm=switch_norm, alpha=alpha, HD=HD,
                                           sp_weight_bool=sp_weight_bool, transforms=transforms, dataset=input_path)
 
     else:             
@@ -158,14 +158,14 @@ if __name__ == '__main__':
 
                 
     """ Create datasets for dataloader """
-    training_set = Dataset_tiffs_snake_seg(tracker.idx_train, examples, mean_arr, std_arr, sp_weight_bool=tracker.sp_weight_bool, transforms = transforms)
-    val_set = Dataset_tiffs_snake_seg(tracker.idx_valid, examples, mean_arr, std_arr, sp_weight_bool=tracker.sp_weight_bool, transforms = 0)
+    training_set = Dataset_tiffs_snake_seg(tracker.idx_train, examples, tracker.mean_arr, tracker.std_arr, sp_weight_bool=tracker.sp_weight_bool, transforms = tracker.transforms)
+    val_set = Dataset_tiffs_snake_seg(tracker.idx_valid, examples, tracker.mean_arr, tracker.std_arr, sp_weight_bool=tracker.sp_weight_bool, transforms = 0)
     
     """ Create training and validation generators"""
-    val_generator = data.DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=num_workers,
+    val_generator = data.DataLoader(val_set, batch_size=tracker.batch_size, shuffle=False, num_workers=num_workers,
                     pin_memory=True, drop_last = True)
 
-    training_generator = data.DataLoader(training_set, batch_size=batch_size, shuffle=True, num_workers=num_workers,
+    training_generator = data.DataLoader(training_set, batch_size=tracker.batch_size, shuffle=True, num_workers=num_workers,
                       pin_memory=True, drop_last=True)
          
     print('Total # training images per epoch: ' + str(len(training_set)))
@@ -173,9 +173,9 @@ if __name__ == '__main__':
     
 
     """ Epoch info """
-    train_steps_per_epoch = len(idx_train)/batch_size
-    validation_size = len(idx_valid)
-    epoch_size = len(idx_train)    
+    train_steps_per_epoch = len(tracker.idx_train)/tracker.batch_size
+    validation_size = len(tracker.idx_valid)
+    epoch_size = len(tracker.idx_train)    
    
     """ Start training """
     for cur_epoch in range(len(tracker.train_loss_per_epoch), 10000): 
